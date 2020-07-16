@@ -36,7 +36,7 @@ router.post("/authenticate", function (req, res) {
         res.status(400).json({error:'Some error occured please try again later'})
       }else {
         let data = result[0][0]
-        var token = jwt.sign({token :{email : data.email, role :data.role}}, 'usertoken', { expiresIn:3000 });
+        var token = jwt.sign({token :{email : data.email, role :data.role}}, 'usertoken', { expiresIn:300 });
         if (data.message === "Success"){
           data.token = token 
         }
