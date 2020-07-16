@@ -15,5 +15,5 @@ Then as per tasks
     Non logged in Users can see Articles other than Featured Articles functionality is implemented
 7. 
 8. 
-9. 
+9. Created Get Article api with orders 
 10. Token will get expired after 5 minutes , user has to again hit auth api after expiration of login 

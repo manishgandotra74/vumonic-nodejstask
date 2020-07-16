@@ -41,3 +41,9 @@ http://localhost:4000/article/getarticlebytopicid/1
 9. Get Article by Article id
 
 http://localhost:4000/article/getArticleByid/2
+
+10. Get all articles API 
+http://localhost:4000/article/getArticles/2
+if id = 1 Ascending order
+else if id = 2 Descending order
+else Normal order

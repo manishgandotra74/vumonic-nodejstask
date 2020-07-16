@@ -94,4 +94,22 @@ router.get("/getArticleByid/:id",  function (req, res) {
           });
     
 })
+
+
+// get all articles
+router.get("/getArticles/:id", function (req, res) {
+  // if id = 1 ascending order , if 2 descending order else normal order
+  jwt.verify(req.headers.authorization, 'usertoken', function(err, decoded) {
+      // if loggined
+ var req_sql = "call get_Articles("+ req.params.id + ")"
+  con.query(req_sql, function (err, result) {        
+        if (err){
+          res.status(400).json({error:'Some error occured please try again later'})
+        }else {
+          res.json({message:result})
+        }
+        });
+  
+});
+})
 module.exports = router;
