@@ -69,7 +69,7 @@ router.get("/getarticlebytopicid/:id", function (req, res) {
             var reg_sql ="select * from tb_articles where topic = "+req.params.id
         }else {
             // if not logined
-            var reg_sql ="select * from tb_articles where topic = "+req.params.id +" and isFeatured=true"
+            var reg_sql ="select * from tb_articles where topic = "+req.params.id +" and isFeatured=false"
 
         }
         con.query(reg_sql, function (err, result) {        
