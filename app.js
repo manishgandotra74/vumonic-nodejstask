@@ -29,10 +29,12 @@ app.use(function (req, res, next) {
 const user = require('./routes/user');
 const article = require('./routes/article');
 const topic = require('./routes/topic');
+const tree = require('./routes/tree');
 
 app.use('/user', user)
 app.use('/article', article)
 app.use('/topic', topic)
+app.use('/tree', tree)
 
 app.listen(4000)
 

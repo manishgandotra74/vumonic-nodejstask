@@ -13,7 +13,7 @@ Then as per tasks
     Fetch Article by id -- done 
     Count will be increased when get article by id is called 
     Non logged in Users can see Articles other than Featured Articles functionality is implemented
-7. 
-8. 
+7. Tags are associated while created article or updating
+8. Fetch api is made which will relate to articles search tags
 9. Created Get Article api with orders 
 10. Token will get expired after 5 minutes , user has to again hit auth api after expiration of login 

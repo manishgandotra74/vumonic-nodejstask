@@ -20,7 +20,8 @@ router.post("/addarticle", upload.single('file'), function (req, res) {
         if (decoded && decoded.token && decoded.token.role === "ADMIN" ){
           if (req.file && req.file.filename){
 
-         var reg_sql ="call add_articles('"+req.query.title+"',"+req.query.topic+ ",'"+req.query.content+ "',"+req.query.isfeatured +",'"+URL+req.file.filename+ "')"
+         var reg_sql ="call add_articles('"+req.query.title+"',"+req.query.topic+ ",'"+req.query.content+ "',"+req.query.isfeatured +",'"+URL+req.file.filename+ "','"+req.query.tags+  "')"
+      console.log(reg_sql);
          con.query(reg_sql, function (err, result) {
               if (err){
                 res.status(400).json({error:'Some error occured please try again later'})
@@ -36,14 +37,14 @@ router.post("/addarticle", upload.single('file'), function (req, res) {
             res.send({message :"Unauthorized"})
         }
     });
-  // }
+  
 })
 
 router.post("/updatearticle", upload.single('file'), function (req, res) {
     jwt.verify(req.headers.authorization, 'usertoken', function(err, decoded) {
         if (decoded && decoded.token && decoded.token.role === "ADMIN" ){
           if (req.file && req.file.filename){
-         var reg_sql ="call update_articles("+req.query.articleid+",'"+req.query.title+"',"+req.query.topic+ ",'"+req.query.content+ "',"+req.query.isfeatured +",'"+URL+req.file.filename+ "')"
+         var reg_sql ="call update_articles("+req.query.articleid+",'"+req.query.title+"',"+req.query.topic+ ",'"+req.query.content+ "',"+req.query.isfeatured +",'"+URL+req.file.filename+ "','"+req.query.tags+  "')"
             con.query(reg_sql, function (err, result) {
                 
               if (err){
@@ -112,4 +113,38 @@ router.get("/getArticles/:id", function (req, res) {
   
 });
 })
+// call fetch_articles("Titlee7")
+router.get("/fetcharticles/:article_name", function (req, res) {
+  // if id = 1 ascending order , if 2 descending order else normal order
+  jwt.verify(req.headers.authorization, 'usertoken', function(err, decoded) {
+      // if loggined
+      var reg_sql ="call fetch_Articles('"+ req.params.article_name + "')"
+      console.log(reg_sql);  
+      con.query(reg_sql, function (err, result) {  
+
+        if (err){
+          res.status(400).json({error:'Some error occured please try again later'})
+        }else {
+          res.json({message:result})
+        }
+        });
+  
+});
+})
+// router.get("/fetcharticles", function (req, res) {
+//   jwt.verify(req.headers.authorization, 'usertoken', function(err, decoded) {
+//       // if loggined
+  
+//       var reg_sql ="call fetch_articles('"+ req.params.article_name +"')" 
+// console.log(reg_sql);
+//     con.query(reg_sql, function (err, result) {        
+//         if (err){
+//           res.status(400).json({error:'Some error occured please try again later'})
+//         }else {
+//           res.json({message:result})
+//         }
+//         });
+  
+// });
+// })
 module.exports = router;
