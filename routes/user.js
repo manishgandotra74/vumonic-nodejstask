@@ -19,7 +19,6 @@ router.post("/register-user", function (req, res) {
     con.query(reg_sql, function (err, result) {
         
       if (err){
-          console.log('err', err);
           
         res.status(400).json({error:'Some error occured please try again later'})
       }else {
@@ -34,12 +33,13 @@ router.post("/authenticate", function (req, res) {
     let reg_sql ="call authenticate('"+req.query.email+"','"+req.query.password+ "')"
     con.query(reg_sql, function (err, result) {
       if (err){
-        console.log('err', err);
         res.status(400).json({error:'Some error occured please try again later'})
       }else {
         let data = result[0][0]
         var token = jwt.sign({token :{email : data.email, role :data.role}}, 'usertoken', { expiresIn:3000 });
-        data.token = token 
+        if (data.message === "Success"){
+          data.token = token 
+        }
         res.json({message:data})
       }
       });
