@@ -2,7 +2,7 @@ Steps to follow
 1. FIrst of all take a clone with repo
 2. Install modules with command npm install 
 3. THen run command nodemon OR node app.js 
-4. Take a dump from https://github.com/manishgandotra74/vumonic-nodejstask/Dump20200716.zip
+4. Take a dump from https://github.com/manishgandotra74/vumonic-nodejstask/blob/master/Dump20200716.zip
 5. Example of APIs are in folder apis/apis.txt
 Then as per tasks 
 1. Sign in and sign up apis are created and user will get a token which he has to pass for every authentication
